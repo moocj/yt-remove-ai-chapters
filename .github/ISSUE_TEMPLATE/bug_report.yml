@@ -1,11 +1,13 @@
 name: Bug report
 description: The script isn't working or something looks wrong
 labels: ["bug"]
+
 body:
   - type: markdown
     attributes:
       value: |
         Thanks for reporting. A few details help me reproduce it quickly.
+
   - type: input
     id: video
     attributes:
@@ -14,6 +16,7 @@ body:
       placeholder: https://www.youtube.com/watch?v=...
     validations:
       required: true
+
   - type: dropdown
     id: browser
     attributes:
@@ -27,6 +30,7 @@ body:
         - Other
     validations:
       required: true
+
   - type: input
     id: browser-version
     attributes:
@@ -34,6 +38,7 @@ body:
       placeholder: e.g. Chrome 140, Safari 26
     validations:
       required: true
+
   - type: dropdown
     id: manager
     attributes:
@@ -46,6 +51,7 @@ body:
         - Other
     validations:
       required: true
+
   - type: input
     id: script-version
     attributes:
@@ -54,6 +60,7 @@ body:
       placeholder: e.g. 1.0.0
     validations:
       required: true
+
   - type: dropdown
     id: symptom
     attributes:
@@ -67,6 +74,7 @@ body:
         - Something else
     validations:
       required: true
+
   - type: textarea
     id: details
     attributes:
@@ -74,12 +82,14 @@ body:
       description: What you expected and what happened. Screenshots are welcome.
     validations:
       required: true
+
   - type: textarea
     id: console
     attributes:
       label: Console output
       description: Optional. Set `var debug = true;` in your installed copy, reload, and paste any `[Remove AI Chapters]` lines or errors.
       render: text
+
   - type: checkboxes
     id: checks
     attributes:
@@ -90,3 +100,4 @@ body:
         - label: I reloaded the page (Cmd/Ctrl+Shift+R) after installing
           required: true
         - label: I disabled other YouTube userscripts and extensions to check for conflicts
+          required: true
