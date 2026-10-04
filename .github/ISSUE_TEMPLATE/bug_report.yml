@@ -1,0 +1,92 @@
+name: Bug report
+description: The script isn't working or something looks wrong
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. A few details help me reproduce it quickly.
+  - type: input
+    id: video
+    attributes:
+      label: Video URL
+      description: A video where it happens.
+      placeholder: https://www.youtube.com/watch?v=...
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Safari (macOS)
+        - Safari (iOS/iPadOS)
+        - Chrome
+        - Firefox
+        - Edge
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser-version
+    attributes:
+      label: Browser version
+      placeholder: e.g. Chrome 140, Safari 26
+    validations:
+      required: true
+  - type: dropdown
+    id: manager
+    attributes:
+      label: Userscript manager
+      options:
+        - Userscripts (Safari)
+        - Tampermonkey
+        - Violentmonkey
+        - Greasemonkey
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: script-version
+    attributes:
+      label: Script version
+      description: Shown in your manager's script list. Compare it with the latest release.
+      placeholder: e.g. 1.0.0
+    validations:
+      required: true
+  - type: dropdown
+    id: symptom
+    attributes:
+      label: What do you see?
+      options:
+        - AI chapters still show on the bar
+        - Chapter title still shows on hover
+        - "View Chapters" button or panel still shows
+        - Creator chapters were removed
+        - YouTube is broken or won't load
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What you expected and what happened. Screenshots are welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: console
+    attributes:
+      label: Console output
+      description: Optional. Set `var debug = true;` in your installed copy, reload, and paste any `[Remove AI Chapters]` lines or errors.
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I'm on the latest version of the script
+          required: true
+        - label: I reloaded the page (Cmd/Ctrl+Shift+R) after installing
+          required: true
+        - label: I disabled other YouTube userscripts and extensions to check for conflicts
