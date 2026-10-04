@@ -30,3 +30,10 @@ The latest chrome versions may block userscripts unless you allow them. To do th
 2. Find your userscript manager's **Details** page.
 3. Turn on **Allow User Scripts**.
 
+## Issues
+
+If the script stops working, [open an issue](https://github.com/moocj/yt-remove-ai-chapters/issues), following the template as best you can.
+
+## License
+
+[MIT](LICENSE)
