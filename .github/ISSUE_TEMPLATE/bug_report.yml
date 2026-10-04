@@ -68,7 +68,7 @@ body:
       options:
         - AI chapters still show on the bar
         - Chapter title still shows on hover
-        - "View Chapters" button or panel still shows
+        - '"View Chapters" button or panel still shows'
         - Creator chapters were removed
         - YouTube is broken or won't load
         - Something else
