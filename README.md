@@ -12,7 +12,7 @@ This script removes these chapters, so only videos where the chapters are create
 
 ## Install
 
-You can install the script directly from [greasefork](https://greasyfork.org/en/scripts/598706-youtube-remove-ai-chapters)
+You can install the script directly from [greasyfork](https://greasyfork.org/en/scripts/598706-youtube-remove-ai-chapters)
 
 You can also install the script manually:
 
@@ -23,7 +23,7 @@ You can also install the script manually:
 | Browser | Manager |
 |---|---|
 | Safari (macOS/iOS) | [Userscripts](https://apps.apple.com/app/userscripts/id1463298887) |
-| Chrome/Firefox/Edge | [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/) |
+| Chrome/Firefox/Edge | [Tampermonkey](https://www.tampermonkey.net/), [Violentmonkey](https://violentmonkey.github.io/) or [Greasemonkey](https://www.greasespot.net)|
 
 
 ### Chrome notes
