@@ -12,6 +12,12 @@ This script removes these chapters, so only videos where the chapters are create
 
 ## Install
 
+You can install the script directly from [greasefork](https://greasyfork.org/en/scripts/598706-youtube-remove-ai-chapters)
+
+-- -- 
+
+You can also install the script manually:
+
 1. Install a userscript manager for your browser (table below)
 2. Open the [raw script](https://raw.githubusercontent.com/moocj/yt-remove-ai-chapters/main/yt-remove-ai-chapters.user.js). Your manager should offer to install the script for you.
 3. Reload Youtube.
