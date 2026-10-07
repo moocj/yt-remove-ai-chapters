@@ -14,8 +14,6 @@ This script removes these chapters, so only videos where the chapters are create
 
 You can install the script directly from [greasefork](https://greasyfork.org/en/scripts/598706-youtube-remove-ai-chapters)
 
--- -- 
-
 You can also install the script manually:
 
 1. Install a userscript manager for your browser (table below)
