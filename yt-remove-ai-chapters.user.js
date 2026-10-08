@@ -26,7 +26,7 @@
 
   if (/^\/(?:embed|live_embed)(?:\/|$)/.test(location.pathname)) return;
 
-  var VERSION = '1.2.2';
+  var VERSION = '1.2.0';
   var CLASS = 'yt-auto-chapters';
   var STYLE_ID = 'yt-remove-ai-chapters-style';
   var ATTR_STRIPPED = 'data-ytrac-stripped';
