@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Remove AI Chapters
 // @namespace    https://github.com/moocj/yt-remove-ai-chapters
-// @version      1.1.0
+// @version      1.2.0
 // @description  Removes YouTube's AI-generated chapters from videos. Creator-made chapters are still shown.
 // @description:de  Entfernt die KI-generierten Kapitel von YouTube aus Videos. Vom Ersteller angelegte Kapitel bleiben sichtbar.
 // @description:es  Elimina los capítulos generados por IA de YouTube en los vídeos. Los capítulos creados por el autor siguen visibles.
@@ -11,6 +11,7 @@
 // @license      MIT
 // @match        https://www.youtube.com/*
 // @match        https://youtube.com/*
+// @match        https://m.youtube.com/*
 // @run-at       document-start
 // @inject-into  page
 // @grant        none
@@ -25,10 +26,11 @@
 
   if (/^\/(?:embed|live_embed)(?:\/|$)/.test(location.pathname)) return;
 
-  var VERSION = '1.1.0';
+  var VERSION = '1.2.0';
   var CLASS = 'yt-auto-chapters';
   var STYLE_ID = 'yt-remove-ai-chapters-style';
   var ATTR_STRIPPED = 'data-ytrac-stripped';
+  var IS_MOBILE = location.hostname === 'm.youtube.com';
 
   var CSS = [
     'body.' + CLASS + ' .ytp-chapter-container,',
@@ -39,7 +41,11 @@
     'body.' + CLASS + ' .ytp-fine-scrubbing-chapter-title,',
     'body.' + CLASS + ' .ytp-tooltip-progress-bar-pill-title,',
     'body.' + CLASS + ' ytd-macro-markers-list-renderer,',
-    'body.' + CLASS + ' ytd-engagement-panel-section-list-renderer[target-id*="macro-markers"]',
+    'body.' + CLASS + ' ytd-engagement-panel-section-list-renderer[target-id*="macro-markers"],',
+    // Mobile (m.youtube.com) guesses - verify with Web Inspector
+    'body.' + CLASS + ' ytm-macro-markers-list-renderer,',
+    'body.' + CLASS + ' ytm-engagement-panel[target-id*="macro-markers"],',
+    'body.' + CLASS + ' [target-id*="macro-markers-auto-chapters"]',
     '{ display: none !important; }',
     'body.' + CLASS + ' .ytp-chapter-hover-container',
     '{ margin-right: 0 !important; }'
@@ -64,6 +70,17 @@
 
   var wantClass = false;
   var scheduled = false;
+  var lastVideoId = null;
+
+  function currentVideoId() {
+    try {
+      var m = location.search.match(/[?&]v=([^&]+)/);
+      if (m) return m[1];
+      m = location.pathname.match(/^\/(?:shorts|live)\/([^/?#]+)/);
+      return m ? m[1] : null;
+    } catch (e) { return null; }
+  }
+  lastVideoId = currentVideoId();
 
   function ensureStyle() {
     if (document.getElementById(STYLE_ID)) return true;
@@ -105,10 +122,23 @@
     sync();
   }
 
+  // Mobile fallback: m.youtube.com may not fire the yt-navigate-* events,
+  // so detect video changes by URL and reset the stripped flag.
+  function checkVideoChange(why) {
+    if (!IS_MOBILE) return;
+    var vid = currentVideoId();
+    if (vid !== lastVideoId) {
+      log('video changed ' + lastVideoId + ' -> ' + vid + ' (' + why + ')');
+      lastVideoId = vid;
+      try { document.documentElement.removeAttribute(ATTR_STRIPPED); } catch (e) { }
+      wantClass = false;
+    }
+  }
+
   function schedule(why) {
     if (scheduled) return;
     scheduled = true;
-    function run() { scheduled = false; sync(); recompute(why); }
+    function run() { scheduled = false; sync(); checkVideoChange(why); recompute(why); }
     if (typeof requestAnimationFrame === 'function') requestAnimationFrame(run);
     else setTimeout(run, 50);
   }
@@ -251,8 +281,9 @@
       ok.initial = true;
     } catch (e) { log('ytInitialData hook failed', e); }
 
-    log('v' + VERSION + ' loaded | mode: ' + mode + ' | hooks: JSON.parse=' + ok.parse +
-      ' fetch=' + ok.fetch + ' ytInitialData=' + ok.initial + ' | DOM fallback: active');
+    log('v' + VERSION + ' loaded | host: ' + location.hostname + ' | mode: ' + mode +
+      ' | hooks: JSON.parse=' + ok.parse + ' fetch=' + ok.fetch + ' ytInitialData=' + ok.initial +
+      ' | DOM fallback: active');
   }
 
   installHooks();
@@ -275,4 +306,8 @@
   ['yt-navigate-finish', 'yt-page-data-updated', 'yt-player-updated'].forEach(function (name) {
     window.addEventListener(name, function () { schedule(name); }, true);
   });
+
+  // Extra navigation signals for mobile / Safari
+  window.addEventListener('popstate', function () { schedule('popstate'); }, true);
+  window.addEventListener('state-navigatestart', function () { schedule('state-navigatestart'); }, true);
 })();
