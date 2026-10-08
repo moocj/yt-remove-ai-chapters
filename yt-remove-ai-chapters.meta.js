@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Remove AI Chapters
 // @namespace    https://github.com/moocj/yt-remove-ai-chapters
-// @version      1.1.0
+// @version      1.2.0
 // @description  Removes YouTube's AI-generated chapters from videos. Creator-made chapters are still shown.
 // @description:de  Entfernt die KI-generierten Kapitel von YouTube aus Videos. Vom Ersteller angelegte Kapitel bleiben sichtbar.
 // @description:es  Elimina los capítulos generados por IA de YouTube en los vídeos. Los capítulos creados por el autor siguen visibles.
