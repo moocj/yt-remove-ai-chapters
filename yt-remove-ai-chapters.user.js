@@ -26,7 +26,7 @@
 
   if (/^\/(?:embed|live_embed)(?:\/|$)/.test(location.pathname)) return;
 
-  var VERSION = '1.2.1';
+  var VERSION = '1.2.2';
   var CLASS = 'yt-auto-chapters';
   var STYLE_ID = 'yt-remove-ai-chapters-style';
   var ATTR_STRIPPED = 'data-ytrac-stripped';
@@ -46,8 +46,6 @@
     'body.' + CLASS + ' ytm-macro-markers-list-renderer,',
     'body.' + CLASS + ' ytm-engagement-panel[target-id*="macro-markers"],',
     'body.' + CLASS + ' [target-id*="macro-markers-auto-chapters"],',
-    // Mobile player "View chapters" button next to the time display.
-    // Class-based first (language independent), aria-label as a fallback.
     'body.' + CLASS + ' [class*="chapter-title" i],',
     'body.' + CLASS + ' [class*="chaptertitle" i],',
     'body.' + CLASS + ' [class*="chapter-container" i],',
@@ -58,7 +56,11 @@
     'body.' + CLASS + ' [role="button"][aria-label*="chapter" i]',
     '{ display: none !important; }',
     'body.' + CLASS + ' .ytp-chapter-hover-container',
-    '{ margin-right: 0 !important; }'
+    '{ margin-right: 0 !important; }',
+    'body.' + CLASS + ' button.ytwPlayerTimeDisplayPlayerBarButton[aria-label*="chapter" i]',
+    '{ display: none !important; }',
+    'body.' + CLASS + ' button[aria-label="View Chapters"]',
+    '{ display: none !important; }'
   ].join(' ');
 
 
