@@ -38,7 +38,7 @@ The latest chrome versions may block userscripts unless you allow them. To do th
 
 ## Donate
 
-This script is, and will forever be completely free. You do not need to pay to use it, and should not pay anyone else to get access to it. If you wish to donate, you may do so. 
+This script is, and will forever be completely free. You do not need to pay to use it, and should not pay anyone else to get access to it. If you wish to donate to support my work, you may do so, but it is not a requirement and is completely optional. 
 
 [![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/moocj)
 
