@@ -14,7 +14,9 @@ This script removes these chapters, so only videos where the chapters are create
 
 You can install the script directly from [greasyfork](https://greasyfork.org/en/scripts/598706-youtube-remove-ai-chapters)
 
-You can also install the script manually:
+Firefox users can also install it directly as an extension [here](https://addons.mozilla.org/en-GB/firefox/addon/remove-youtube-ai-chapters/)
+
+Otherwise, you can also install the script manually:
 
 1. Install a userscript manager for your browser (table below)
 2. Open the [raw script](https://raw.githubusercontent.com/moocj/yt-remove-ai-chapters/main/yt-remove-ai-chapters.user.js). Your manager should offer to install the script for you.
@@ -33,6 +35,12 @@ The latest chrome versions may block userscripts unless you allow them. To do th
 1. Open `chrome://extensions`
 2. Find your userscript manager's **Details** page.
 3. Turn on **Allow User Scripts**.
+
+## Donate
+
+This script is, and will forever be completely free. You do not need to pay to use it, and should not pay anyone else to get access to it. If you wish to donate, you may do so. 
+
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/moocj)
 
 ## Issues
 
